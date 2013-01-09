@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <name>dashboard_2.xaction</name>
+  <title>Dashboard 2</title>
+  <version>1</version>
+  <logging-level>FATAL</logging-level>
+  <documentation> 
+    <author>G Srinivas (cg.srinivas@gmail.com)</author>  
+    <description></description>  
+    <help></help>  
+    <result-type>Table</result-type>  
+    <icon/> 
+  </documentation>
+
+  <inputs> 
+    <get_data type="string"> 
+      <sources> 
+        <request>get_data</request> 
+      </sources>  
+      <default-value><![CDATA[0]]></default-value> 
+    </get_data>  
+    <google_map_key type="string"> 
+      <sources> 
+        <request>google_map_key</request> 
+      </sources>  
+      <default-value><![CDATA[ABQIAAAAcCU8QQ7Zn4pxYsbpmhXHtBQz5JJ2zPi3YI9JDWBFF6NSsxhe4BSujuaLBB5qa2KBOkaXzA6OF-q47g]]></default-value> 
+    </google_map_key>  
+  </inputs>
+
+  <outputs> 
+    <json_out type="string"> 
+      <destinations> 
+        <response>content</response> 
+      </destinations> 
+    </json_out> 
+  </outputs>
+
+  <resources> 
+    <template> 
+      <solution-file> 
+        <location>dashboard_2.htm</location>  
+        <mime-type>text/plain</mime-type> 
+      </solution-file> 
+    </template> 
+  </resources>
+  
+  <actions> 
+    <actions> 
+      <condition><![CDATA[get_data == "0"]]></condition>  
+      <action-definition> 
+        <component-name>TemplateComponent</component-name>
+        <action-type>Load the Google Map</action-type>
+        <action-inputs> 
+          <google_map_key_here type="string" mapping="google_map_key"/>  
+          <TheRMonth type="string" mapping="RMonth"/>  
+		  <TheRYear type="string" mapping="RYear"/>
+        </action-inputs>
+        <action-resources> 
+          <template type="resource"/> 
+        </action-resources>
+        <action-outputs> 
+          <output-message type="string" mapping="json_out"/> 
+        </action-outputs>
+        <component-definition/> 
+      </action-definition>
+ 
+    </actions>
+ 
+  </actions> 
+</action-sequence>

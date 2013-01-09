@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="javascript" src="/pentaho/AIDC/js/jquery.js"></script>
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #333;
+}
+-->
+</style>
+
+<script type="text/javascript">
+
+var solution = "AIDC";
+var path = "AIDC";
+
+function initialize()
+{
+	var get_json_msg = "/pentaho/ViewAction?solution="+solution+"&path="+path+"&action=dashboard_1.xaction&get_data=GET_USER";
+	
+	$.get(get_json_msg, function(data1)
+	{
+		var data = eval("(" + data1 + ")");
+		
+		alert(data.CustomerData[0].UserName);
+		
+	});
+}
+
+</script>
+
+</head>
+
+<body onload="initialize()">
+
+<center>
+	<h1>AIDC</h1>
+</center>
+
+<br />
+<br />
+<br />
+
+<center>
+	<h2>Dashboard 1</h2>
+</center>
+
+</body>
+</html>
